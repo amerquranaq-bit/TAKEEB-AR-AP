@@ -1,2 +1,0 @@
-# TAKEEB-AR-AP
-AR AP
