@@ -220,11 +220,10 @@ footer{margin-top:26px;text-align:center;font-size:11.5px;color:var(--text-faint
 
   // ---------- helpers ----------
   function fmt(n){
-    n = Math.round((n||0)*100)/100;
+    n = Math.round(n||0);
     var neg = n < 0; n = Math.abs(n);
-    var parts = n.toFixed(2).split('.');
-    parts[0] = parts[0].replace(/\B(?=(\d{3})+(?!\d))/g, ',');
-    return (neg?'-':'') + parts.join('.');
+    var s = String(n).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    return (neg?'-':'') + s;
   }
   function fmtDate(iso){
     if(!iso) return '';
@@ -316,7 +315,7 @@ footer{margin-top:26px;text-align:center;font-size:11.5px;color:var(--text-faint
   // ---------- statement table ----------
   function buildStatementRows(acc, forPrint){
     var rows = '';
-    rows += '<tr class="opening"><td colspan="2">رصيد افتتاحي (01/01/2026)</td><td class="num">-</td><td class="num">-</td><td class="num">0.00</td></tr>';
+    rows += '<tr class="opening"><td colspan="2">رصيد افتتاحي (01/01/2026)</td><td class="num">-</td><td class="num">-</td><td class="num">0</td></tr>';
     acc.txns.forEach(function(t){
       var descHtml = esc(t.desc) + ((t.inferred && !forPrint) ? '<span class="pill-inf">مستنتج</span>' : '');
       rows += '<tr>' +
